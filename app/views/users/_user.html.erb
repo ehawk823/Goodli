@@ -40,7 +40,15 @@
   <button id = "edit_mission">Edit</button>
 </h2>
 
+<h2>Total Karma:</h2>
+<h2><%= @points_received.length %></h2>
 
-<h2>User Karma Events </h2>
-<h2>Give User Karma Form</h2>
+<h2>Your recent events</h2>
+  <% current_user.events.each do |event| %>
+<h3>Event: <%= event.title %></h3>
+<h4>Karma: <%= event.points.length %>
+    From: <% event.points.each do |point| %>
+          <%= point.sender.name %> -
+          <% end %>
+  <% end %> </h4>
 <h2>Personal Karma D3 Graphic</h2>

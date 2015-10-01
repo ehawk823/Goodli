@@ -9,12 +9,11 @@ class EventsController < ApplicationController
   end
 
   def create
-    binding.pry
     @event = Event.new
     @event.title = params["title"]
     @event.description = params["description"]
+    @event.users << current_user
     @event.save
     redirect_to root_url
-
   end
 end

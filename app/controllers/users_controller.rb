@@ -2,6 +2,11 @@ class UsersController < ApplicationController
   def show
     @id = params[:id]
     @user = User.find_by_id(@id)
+    @points_received = Point.where(receiver_id: @id)
+  end
+
+  def index
+    @users = User.all
   end
 
   def update
