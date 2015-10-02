@@ -1,17 +1,27 @@
+
+<div class="jumbotron">
+  <h1>List of Events</h1>
+  <% @events.each do |event| %>
+  <h3><ul><li><%= event.title %>: <%= event.description %></li></ul></h3>
+  <% end %>
+</div>
 <% if user_signed_in? %>
-  <%= link_to "Profile", controller: "users", action: "show", id: current_user.id %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Event Creation Form</h2>
+  </div>
+  <div class="panel-body">
+    <%= render 'create' %>
+  </div>
+</div>
 <% end %>
-<%= link_to "Users", users_path %>
-<h1> Homepage </h1>
-<h1>IMAGE GOES HERE</h1>
-<h2>List of Events</h2>
-<% @events.each do |event| %>
-<h5><%= event.title %>
-<%= event.description %></h5>
-<% end %>
-<% if user_signed_in? %>
-<h2>Event creation form</h2>
-<%= render 'create' %>
-<% end %>
-<h2>Total Karma!</h2>
-<%= @points.length %>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Total Karma!</h2>
+  </div>
+  <div class="panel-body">
+    <%= @points.length %>
+  </div>
+</div>
