@@ -1,4 +1,4 @@
-class Organization
+module Organizable
   include OrganizationsHelper
   include Change::Resources
   attr_accessor :client, :organization, :loaded_organization, :name, :website, :change_org_url
@@ -6,10 +6,11 @@ class Organization
   def initialize
     @client = Change::Requests::Client.new({ :api_key => ENV["CHANGE_KEY"], :secret_token => ENV["CHANGE_SECRET"] })
     @organization = Organization.new(@client)
+    binding.pry
     @loaded_organization = @organization.load(pick_organization)
-    @name = @loaded_petition['name']
-    @website = @loaded_petition['website'] 
-    @change_org_url = @loaded_petition['organization_url']
+    @name = @loaded_organization['name']
+    @website = @loaded_organization['website'] 
+    @change_org_url = @loaded_organization['organization_url']
   end
 
   def pick_organization
