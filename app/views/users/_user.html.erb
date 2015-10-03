@@ -1,49 +1,53 @@
-<h1>
-  Name:
-  <div id = "name_input">
-    <%= current_user.name %>
-  </div>
-  <div id = "name_form">
-    <%= form_for current_user, remote: true do |f|  %>
-      <%= f.text_field :name %>
-      <%= f.submit 'Update Name'%>
-    <% end %>
-  </div>
-  <button id = "edit">Edit</button>
-</h1>
 
-<h2>
-  Location:
-  <div id = "location_input">
-    <%= current_user.location %>
-  </div>
-  <div id = "location_form">
-    <%= form_for current_user, remote: true do |f|  %>
-      <%= f.text_field :location %>
-      <%= f.submit 'Update Location'%>
-    <% end %>
-  </div>
-  <button id = "edit_location">Edit</button>
-</h2>
 
-<h2>
-  Social Impact Mission:
-  <div id = "mission_input">
-    <%= current_user.bio %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <div id = "name_input">
+        <%= current_user.name %>
+      </div>
+      </h3>
+      <div id = "name_form">
+        <%= form_for current_user, remote: true do |f|  %>
+          <%= f.text_field :name %>
+          <%= f.submit 'Update Name'%>
+        <% end %>
+      </div>
+      <button id = "edit">Edit</button>
   </div>
-  <div id = "mission_form">
-    <%= form_for current_user, remote: true do |f|  %>
-      <%= f.text_field :bio %>
-      <%= f.submit 'Update Mission Statement'%>
-    <% end %>
+  <div class="panel-body">
+    Location:
+    <div id = "location_input">
+      <%= current_user.location %>
+    </div>
+    <div id = "location_form">
+      <%= form_for current_user, remote: true do |f|  %>
+        <%= f.text_field :location %>
+        <%= f.submit 'Update Location'%>
+      <% end %>
+    </div>
+    <button id = "edit_location">Edit</button>
+    <br></br>
+    Social Impact Mission:
+    <div id = "mission_input">
+      <%= current_user.bio %>
+    </div>
+    <div id = "mission_form">
+      <%= form_for current_user, remote: true do |f|  %>
+        <%= f.text_field :bio %>
+        <%= f.submit 'Update Mission Statement'%>
+      <% end %>
+    </div>
+    <button id = "edit_mission">Edit</button>
   </div>
-  <button id = "edit_mission">Edit</button>
-</h2>
+</div>
 
-<h2>Total Karma:</h2>
-<h2><%= @points_received.length %></h2>
+<div class="well">
+<h3>Total Karma: <%= @points_received.length %></h3>
+</div>
 
-<h2>Your recent events</h2>
+<div class="jumbotron">
+<h2>Your Recent Events</h2>
   <% current_user.events.each do |event| %>
 <h3>Event: <%= event.title %></h3>
 <h4>Karma: <%= event.points.length %>
@@ -51,4 +55,5 @@
           <%= point.sender.name %> -
           <% end %>
   <% end %> </h4>
+</div>
 <h2>Personal Karma D3 Graphic</h2>
