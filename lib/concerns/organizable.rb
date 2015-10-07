@@ -1,3 +1,5 @@
+require './app/helpers/organizations_helper'
+
 module Organizable
   include OrganizationsHelper
   include Change::Resources
