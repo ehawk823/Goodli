@@ -10,6 +10,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new
+    @organization = CreateOrganization.new(client, return_organizations_array).call
     @event.title = params["title"]
     @event.description = params["description"]
     @event.users << current_user

@@ -1,6 +1,6 @@
 require './app/helpers/organizations_helper'
 
-module Organizable
+class CreateOrganization
   include OrganizationsHelper
   include Change::Resources
   attr_accessor :client, :organization, :loaded_organization, :name, :website, :change_org_url
@@ -15,7 +15,11 @@ module Organizable
     @change_org_url = @loaded_organization['organization_url']
   end
 
+  private
+
   def pick_organization
-    @organization_url = return_organizations_array.sample
+    return_organizations_array.sample
   end
 end
+
+CreateOrganization.new(client, return_organizations_array).call
