@@ -11,7 +11,6 @@ class CreatePetitionEvent
     @organization = Organization.new(@client)
     org_id = @organization.get_id(BASE_URL + "#{organization}")
     loaded_org = @organization.load(org_id)
-    binding.pry
   end
 
   def get_petitions
@@ -24,8 +23,7 @@ class CreatePetitionEvent
     new_event.title = sample_title
     new_event.save
     new_event.description = sample_url
-    new_event.description.save
-    binding.pry
+    new_event.save
   end
 
   def make_events_from_petitions

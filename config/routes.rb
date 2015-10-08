@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   root 'events#index'
   # get 'event#new'
   resources :events
+  post '/events/list', to: 'events#get_petitions'
 end
