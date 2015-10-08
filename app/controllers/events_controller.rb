@@ -17,4 +17,12 @@ class EventsController < ApplicationController
     @event.save
     redirect_to root_url
   end
+
+  def get_petitions
+
+    CreatePetitionEvent
+    # result is to have some new events 
+    # now, go into the database and get me the events you just created
+    # give them to the view
+  end
 end
