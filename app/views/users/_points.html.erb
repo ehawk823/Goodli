@@ -1,0 +1,15 @@
+<% if current_user.giveable_karma > 0 %>
+<div class="alert alert-info" role="alert">
+<%= form_tag('/points', method: 'post', remote: true) do %>
+  <%= label_tag("Please select an event to award a karma point") %>
+  <%= hidden_field_tag :receiver_id, @user.id %>
+  <%= hidden_field_tag :sender_id, current_user.id %>
+  <%= collection_select :events, :id, @user.events, :id, :title %>
+  <%= submit_tag('Submit') %>
+</div>
+<% end %>
+<% else %>
+  <div class="alert alert-danger" role="alert">
+    "You have no more giveable karma"
+  </div>
+<% end %>

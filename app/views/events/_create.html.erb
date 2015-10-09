@@ -1,27 +1,26 @@
-
-<%= form_tag('/events', method: 'post', remote: true) do %>
-<p>
-  <%= label_tag("Event Title") %>
-</p>
-  <%= text_field_tag :title %>
-</p>
-<p>
-  <%= label_tag("Location") %>
-</p>
-<p>
-  <%= text_field_tag :location %>
-</p>
-<p>
-  <%= label_tag("Description") %>
-</p>
-<p>
-  <%= text_area_tag :description %>
-</p>
-  <%= hidden_field_tag :host_id, current_user.id %>
-<p>
-  <%= datetime_select "event", :date, ampm: true %>
-</p>
-<p>
-  <%= submit_tag('Submit') %>
-</p>
+    <%= form_tag('/events', method: 'post', remote: true) do %>
+    <p>
+      <%= label_tag("Event Title") %>
+    </p>
+      <%= text_field_tag :title %>
+    </p>
+    <p>
+      <%= label_tag("Location") %>
+    </p>
+    <p>
+      <%= text_field_tag :location %>
+    </p>
+    <p>
+      <%= label_tag("Description") %>
+    </p>
+    <p>
+      <%= text_area_tag :description %>
+    </p>
+      <%= hidden_field_tag :host_id, current_user.id %>
+    <p>
+      <%= datetime_select "event", :date, ampm: true %>
+    </p>
+    <p>
+      <%= submit_tag('Submit') %>
+    </p>
 <% end %>
