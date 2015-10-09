@@ -20,10 +20,7 @@ class EventsController < ApplicationController
 
   def get_petitions
     test = CreatePetitionEvent.new
-    test.get_petitions
-    # result is to have some new events 
-    # now, go into the database and get me the events you just created
-    # give them to the view
-    redirect_to root_url
+    petition_array = test.get_petitions
+    redirect_to events_list_path
   end
 end

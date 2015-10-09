@@ -1,3 +1,11 @@
 <%= form_tag('/events/list', method: 'post') do %>
   <%= submit_tag('Click to List Events') %>
 <% end %>
+
+<% Event.all.each do |event| %>
+  <% if event.from_change == true %>
+  <ul><%= event.title %><a href="<%= event.description %>">Sign Up!</a></ul>
+  <% else %>
+  <%= nil %>
+  <% end %> 
+<%end %>
