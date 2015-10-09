@@ -3,5 +3,9 @@
   <%= text_field_tag :title %>
   <%= label_tag("Description") %>
   <%= text_field_tag :description %>
+  <%= label_tag("Location") %>
+  <%= text_field_tag :location %>
+  <%= hidden_field_tag :host_id, current_user.id %>
+  <%= datetime_select "event", :date, ampm: true %>
   <%= submit_tag('Submit') %>
 <% end %>

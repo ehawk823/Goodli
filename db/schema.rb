@@ -17,9 +17,12 @@ ActiveRecord::Schema.define(version: 20151009145524) do
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
-    t.text    "description"
-    t.string  "title"
-    t.boolean "from_change"
+    t.text     "description"
+    t.string   "title"
+    t.datetime "date"
+    t.string   "location"
+    t.integer  "host_id"
+    t.boolean  "from_change"
   end
 
   create_table "points", force: :cascade do |t|
@@ -41,8 +44,7 @@ ActiveRecord::Schema.define(version: 20151009145524) do
     t.string   "volunteer_experience"
     t.string   "location"
     t.string   "bio"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.string   "phone"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -53,6 +55,8 @@ ActiveRecord::Schema.define(version: 20151009145524) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "image"
+    t.integer  "giveable_karma"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

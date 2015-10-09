@@ -11,7 +11,19 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap-sprockets
 //= require jquery_ujs
+
+//= require jquery.easing.min
+//= require jquery.countdown.min
+//= require device.min
+//= require wow.min
+//= require smoothscroll
+//= require map
+//= require vegas/vegas.min
+//= require csoon
+//= require_tree .
+
 //= require jquery.purr
 //= require best_in_place
 //= require bootstrap

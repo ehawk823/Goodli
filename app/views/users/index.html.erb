@@ -1,9 +1,30 @@
-<%= link_to "Home", events_path %>
-<% if user_signed_in? %>
-  <%= link_to "Profile", controller: "users", action: "show", id: current_user.id %>
-<% end %>
-<h1>Goodli Users</h1>
-<% @users.each do |user| %>
-<%= link_to user.name, controller: "users", action: "show", id: user.id %>
-<%= Point.where(receiver_id: user.id).length %>
-<% end %>
+<section class="action2 container-fluid text-center wow fadeIn">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <div style="background:transparent !important" class="jumbotron">
+            <h1>
+              <h1>Goodli Users</h1>
+            </h1>
+          </div>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="container-fluid text-center wow fadeIn">
+    <div class="col-lg-10 col-lg-offset-1">
+        <div class="row">
+          <% @users.each do |user| %>
+            <div class="col-lg-3 col-sm-6 wow fadeIn" data-wow-delay=".2s">
+                <h4>
+                  <% if user.image.model[:image] == nil %>
+                    <%= image_tag "icon-user-default.png", size: "150"%>
+                  <% else %>
+                    <%= image_tag user.image.to_s, size: "150"%>
+                  <% end %>
+                   <p><%= link_to user.name, controller: "users", action: "show", id: user.id %></p></h4>
+                <p>Karma Received: <%= Point.where(receiver_id: user.id).length %></p>
+            </div>
+          <% end %>
+        </div>
+    </div>
+</section>

@@ -18,6 +18,7 @@ class CreatePetitionEvent
     sample_title = sample_petition[0]["title"]
     sample_url = sample_petition[0]["url"]
     new_event = Event.new
+    new_event.host_id = "1"
     new_event.title = sample_title
     new_event.description = sample_url
     new_event.from_change = true

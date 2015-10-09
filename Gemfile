@@ -14,6 +14,7 @@ gem 'devise'
 gem 'best_in_place'
 gem 'rails-erd'
 gem 'change-ruby'
+gem 'carrierwave' 
 
 group :development, :test do
   gem 'byebug'
@@ -43,5 +44,5 @@ group :production do
   gem 'google-analytics-rails'
   gem 'rails_12factor'
 end
-
-gem 'bootstrap-sass', '~> 3.1.1'
+#make with the prettyz
+gem 'bootstrap-sass', '~> 3.3.5'

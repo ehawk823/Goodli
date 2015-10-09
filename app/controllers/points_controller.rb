@@ -9,7 +9,11 @@ class PointsController < ApplicationController
     @point.receiver = User.find(params["receiver_id"])
     @event = Event.find(params["events"]["id"])
     @point.sender = User.find(params["sender_id"])
+    @point.sender.giveable_karma -= 1
+    @point.sender.save
     @user = User.find(params["receiver_id"])
+    @user.giveable_karma += 2
+    @user.save
     @event.points << @point
     @point.save
     redirect_to :back

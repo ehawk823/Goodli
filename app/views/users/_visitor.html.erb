@@ -1,29 +1,79 @@
+<section class="action2 container-fluid text-center wow fadeIn">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <div style="background:transparent !important" class="jumbotron">
+            <div id = "image_input">
+              <% if @user.image.model[:image] == nil %>
+                <%= image_tag "icon-user-default.png", size: "200"%>
+              <% else %>
+                <%= image_tag @user.image.to_s, size: "200"%>
+              <% end %>
+            </div>
+          </div>
+        </div>
+    </div>
+</section>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      Name: <%= @user.name %>
+    </h3>
+  </div>
+  <div class="panel-body">
+    Location: <%= @user.location %>
+    <br></br>
+    Mission: <%= @user.bio %>
+  </div>
+</div>
+<br></br>
+<h2>User's recent events</h2>
+<div class="jumbotron">
+<blockquote>
+<% @user.events.each do |event| %>
+
+  <h3><%= event.title %></h3>
+<blockquote>
+<h4>Karma: <%= event.points.length %></h4>
+  <% array = [] %>
+<h4>From: <% event.points.each do |point| %>
+        <%array << point.sender.name %>
+        <% end %>
+        <% new_array = array.uniq %>
+        <% new_array.each do |name| %>
+          <%= name %>,
+        <% end %>
+        <% if event.points.length == 0 %>
+          hmmm looks like nobody
+        <% else %>
+          and the universe!
+        <% end %>
+        </h4>
+</blockquote>
+<% end %> </h4>
+</blockquote>
+</div>
+
 <% if user_signed_in? %>
-  <%= link_to "Profile", controller: "users", action: "show", id: current_user.id %>
+  <h2>Give <%=@user.name%> Karma for something awesome they've done! You have <%= current_user.giveable_karma %> Karma left to give away.</h2>
+  <%= form_tag('/points', method: 'post') do %>
+    <%= label_tag("Please select an event to award a karma point") %>
+    <%= hidden_field_tag :receiver_id, @user.id %>
+    <%= hidden_field_tag :sender_id, current_user.id %>
+    <%= collection_select :events, :id, @user.events, :id, :title %>
+    <%= submit_tag('Submit') %>
+  <% end %>
 <% end %>
 
-<h1>Name: <%= @user.name %></h1>
-<h2>Location: <%= @user.location %></h2>
-<h2>Mission: <%= @user.bio %></h2>
-<h2>Karma: <%= @points_received.length %></h2>
+<h2>Karma Received: <%= @points_received.length %></h2>
 
-
-  <% if user_signed_in? %>
-    <h2>Give <%=@user.name%> Karma for something awesome they've done! </h2>
-    <%= form_tag('/points', method: 'post') do %>
-      <%= label_tag("Please select an event to award a karma point") %>
-      <%= hidden_field_tag :receiver_id, @user.id %>
-      <%= hidden_field_tag :sender_id, current_user.id %>
-      <%= collection_select :events, :id, @user.events, :id, :title %>
-      <%= submit_tag('Submit') %>
-    <% end %>
-  <% end %>
-<h2>User's recent events</h2>
-  <% @user.events.each do |event| %>
-<h3>Event: <%= event.title %></h3>
-<h4>Karma: <%= event.points.length %>
-    From: <% event.points.each do |point| %>
-          <%= point.sender.name %> -
-          <% end %>
-  <% end %> </h4>
-<h2>Users D3 graphic</h2>
+<section class="action2 container-fluid text-center wow fadeIn">
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <!-- MailChimp Signup Form -->
+            <!-- Replace the form action in the line below with your MailChimp embed action! For more informatin on how to do this please visit the Docs! -->
+            <h2>Personal Karma D3 Graphic</h2>
+            <!-- End MailChimp Signup Form -->
+        </div>
+    </div>
+</section>

@@ -1,23 +1,104 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Goodli</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Goodli</title>
+
   <%= csrf_meta_tags %>
-  <%= analytics_init if Rails.env.production? %>
+
+
+    <!-- Custom fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/ionicons.min.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Background Slider -->
+    <link href="js/vegas/vegas.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom CSS -->
+<!--     <link href="css/csoon.css" rel="stylesheet">
+ -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
 
-<% if user_signed_in? %>
-  Welcome!
-  <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
-  <%= link_to "Listings", events_list_path %>
-<% else %>
-  <%= link_to "Sign Up", new_user_registration_path %>
-  <%= link_to "Login", new_user_session_path %>
-<% end %>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<%# yield %>
+<!-- Preloader -->
+<div id="preloader"><div id="status">&nbsp;</div></div>
+
+<!-- Navigation -->
+<nav class="navbar navbar-custom navbar-fixed-top wow fadeIn" data-wow-duration="3s" data-wow-delay=".2s" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                <i class="fa fa-bars fa-2x"></i>
+            </button>
+            <a class="navbar-brand page-scroll wow fadeInRight" data-wow-duration="1s" data-wow-delay="1.4s" href="#page-top">
+                <span class="logo">GOODli</span> <i class="fa fa-star"></i>
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+            <ul class="nav navbar-nav wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1.4s">
+                <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                <li class="active"><%= link_to "Home", events_path %></li>
+                <% if user_signed_in? %>
+                <li class="active"><%= link_to "Listings", events_list_path %><span class="sr-only"></li>
+                <li class="active"><%= link_to 'Logout', destroy_user_session_path, :method => :delete %><span class="sr-only">(current)</li>
+                <li class="active"><%= link_to "Profile", controller: "users", action: "show", id: current_user.id %><span class="sr-only">(current)</li>
+                <% else %>
+                <li class="active"><%= link_to "Sign Up", new_user_registration_path %></li>
+                <li class="active"><%= link_to "Login", new_user_session_path %></li>
+                <% end %>
+                <li class="active"><%= link_to "Users", users_path %></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <%= yield %>
+
+
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="js/jquery.easing.min.js"></script>
+<script src="js/jquery.countdown.min.js"></script>
+<script src="js/device.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/smoothscroll.js"></script>
+
+<!-- Google Map -->
+<!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&amp;sensor=false"></script>
+<script src="js/map.js"></script>
+
+<!-- Plugins for video background -->
+<script src="js/device.min.js"></script>
+<script src="js/jquery.mb.YTPlayer.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="js/csoon.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,48 @@
+<section class="action2 container-fluid text-center wow fadeIn">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <h1>Thanks for being a part of Goodli</h1>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="container-fluid text-center wow fadeIn">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="field">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true %>
+            </div>
+
+            <div class="field">
+              <%= f.label :password %><br />
+              <%= f.password_field :password, autocomplete: "off" %>
+            </div>
+
+            <% if devise_mapping.rememberable? -%>
+              <div class="field">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            <% end -%>
+
+            <div class="actions">
+              <%= f.submit "Log in" %>
+            </div>
+          <% end %>
+
+          <%= render "devise/shared/links" %>
+
+        </div>
+      </div>
+  </section>
+
+  <section class="action2 container-fluid text-center wow fadeIn">
+      <div class="row">
+          <div class="col-lg-8 col-lg-offset-2">
+            <h1>Welcome back!</h1>
+          </div>
+      </div>
+  </section>

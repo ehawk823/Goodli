@@ -10,6 +10,14 @@ class UsersController < ApplicationController
   end
 
   def update
+    if params[:user][:image] == nil
+      @image = current_user.image
+    else
+      current_user.image = params[:user][:image]
+      @image = current_user.image
+      current_user.save
+      redirect_to :back
+    end
     if params[:user][:name] == nil
       @name = current_user.name
     else
