@@ -1,0 +1,34 @@
+<section class="action2 container-fluid text-center wow fadeIn">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <h1></h1>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="container-fluid text-center wow fadeIn">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <%= form_tag('/events/list', method: 'post') do %>
+            <%= hidden_field_tag :host_id, current_user.id %>
+            <%= submit_tag('Click to List Events') %>
+          <% end %>
+
+          <% Event.all.each do |event| %>
+            <% if event.from_change == true %>
+            <ul><%= event.title %><a href="<%= event.description %>">Sign Up!</a></ul>
+            <% else %>
+            <%= nil %>
+            <% end %> 
+          <%end %>
+      </div>
+    </div>
+</section>
+
+<section class="action2 container-fluid text-center wow fadeIn">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <h1></h1>
+        </div>
+    </div>
+</section>

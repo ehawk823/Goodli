@@ -29,6 +29,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+<body>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 <%# yield %>
@@ -52,6 +53,7 @@
                 <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                 <li class="active"><%= link_to "Home", events_path %></li>
                 <% if user_signed_in? %>
+                <li class="active"><%= link_to "Listings", events_list_path %><span class="sr-only"></li>
                 <li class="active"><%= link_to 'Logout', destroy_user_session_path, :method => :delete %><span class="sr-only">(current)</li>
                 <li class="active"><%= link_to "Profile", controller: "users", action: "show", id: current_user.id %><span class="sr-only">(current)</li>
                 <% else %>

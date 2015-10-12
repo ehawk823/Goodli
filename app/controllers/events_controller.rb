@@ -19,6 +19,12 @@ class EventsController < ApplicationController
     @event.save
   end
 
+  def get_petitions
+    test = CreatePetitionEvent.new
+    petition_array = test.get_petitions
+    redirect_to events_list_path
+  end
+
   def rsvp
     @event = Event.find(params["id"])
     @event.users << current_user
@@ -35,5 +41,4 @@ class EventsController < ApplicationController
     @event.destroy
     redirect_to root_url
   end
-
 end
