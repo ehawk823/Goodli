@@ -1,0 +1,3 @@
+$(".new_event").append("<%= j render(:partial => 'events/event') %>");
+var y = $(window).scrollTop();  //your current y position on the page
+$(window).scrollTop(y-300);

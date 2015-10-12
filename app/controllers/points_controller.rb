@@ -16,7 +16,7 @@ class PointsController < ApplicationController
     @user.save
     @event.points << @point
     @point.save
-    redirect_to :back
+    @points_received = Point.where(receiver_id: params["receiver_id"])
   end
 
   def show

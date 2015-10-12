@@ -1,0 +1,19 @@
+<h3><%= @event.title %></h3>
+<blockquote>
+<h4>Karma: <%= @event.points.length %></h4>
+<% array = [] %>
+<h4>From:
+      <% @event.points.each do |point| %>
+      <%array << point.sender.name %>
+      <% end %>
+      <% new_array = array.uniq %>
+      <% new_array.each do |name| %>
+        <%= name %>,
+      <% end %>
+      <% if @event.points.length == 0 %>
+        hmmm looks like nobody
+      <% else %>
+        and the universe!
+      <% end %>
+      </h4>
+</blockquote>

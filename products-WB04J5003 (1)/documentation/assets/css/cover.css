@@ -260,7 +260,6 @@ a.mtop {
     position: absolute;
     left: 50%;
     top: 50%;
-    background: url(../img/loader.gif) no-repeat center;
     margin: -100px 0 0 -100px;
 }
 

@@ -31,41 +31,40 @@
 <div class="jumbotron">
 <blockquote>
 <% @user.events.each do |event| %>
-
-  <h3><%= event.title %></h3>
-<blockquote>
-<h4>Karma: <%= event.points.length %></h4>
-  <% array = [] %>
-<h4>From: <% event.points.each do |point| %>
-        <%array << point.sender.name %>
-        <% end %>
-        <% new_array = array.uniq %>
-        <% new_array.each do |name| %>
-          <%= name %>,
-        <% end %>
-        <% if event.points.length == 0 %>
-          hmmm looks like nobody
-        <% else %>
-          and the universe!
-        <% end %>
-        </h4>
-</blockquote>
-<% end %> </h4>
+  <div id='<%= event.id %>'>
+    <h3><%= event.title %></h3>
+  <blockquote>
+  <h4>Karma: <%= event.points.length %></h4>
+    <% array = [] %>
+  <h4>From:
+          <% event.points.each do |point| %>
+          <%array << point.sender.name %>
+          <% end %>
+          <% new_array = array.uniq %>
+          <% new_array.each do |name| %>
+            <%= name %>,
+          <% end %>
+          <% if event.points.length == 0 %>
+            hmmm looks like nobody
+          <% else %>
+            and the universe!
+          <% end %>
+          </h4>
+  </blockquote>
+  <% end %> </h4>
+</div>
 </blockquote>
 </div>
 
 <% if user_signed_in? %>
-  <h2>Give <%=@user.name%> Karma for something awesome they've done! You have <%= current_user.giveable_karma %> Karma left to give away.</h2>
-  <%= form_tag('/points', method: 'post') do %>
-    <%= label_tag("Please select an event to award a karma point") %>
-    <%= hidden_field_tag :receiver_id, @user.id %>
-    <%= hidden_field_tag :sender_id, current_user.id %>
-    <%= collection_select :events, :id, @user.events, :id, :title %>
-    <%= submit_tag('Submit') %>
-  <% end %>
+  <h2>Give <%=@user.name%> Karma for something awesome they've done!</h2>
+  <div id='giveable_karma'><h2>You have <%= current_user.giveable_karma %> Karma left to give away.</h2></div>
+  <div id='give_karma'>
+    <%= render 'points' %>
+  </div>
 <% end %>
 
-<h2>Karma Received: <%= @points_received.length %></h2>
+<h2>Karma <%= @user.name%> has received: <div id="total_karma_uptick"><%= @points_received.length %></h2></div>
 
 <section class="action2 container-fluid text-center wow fadeIn">
     <div class="row">

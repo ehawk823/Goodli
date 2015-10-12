@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'users/update'
   post '/points', to: 'points#create'
   post 'events/rsvp'
+  get 'events/:id/rsvp', to: 'events#rsvp', as: :rsvp
   root 'events#index'
   # get 'event#new'
   post '/events/list', to: 'events#get_petitions'

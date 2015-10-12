@@ -1,0 +1,6 @@
+$('#total_karma_uptick').html('<%= @points_received.length %>')
+$('#<%=@event.id%>').html("<%= j render(:partial => 'points/mevent') %>")
+var y = $(window).scrollTop();  //your current y position on the page
+$(window).scrollTop(y-300);
+$('#giveable_karma').html('<h2>You have <%= current_user.giveable_karma %> Karma left to give away.</h2>')
+$('#give_karma').html("<%= j render(:partial => 'users/points') %>")

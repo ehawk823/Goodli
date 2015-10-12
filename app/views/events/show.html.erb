@@ -1,0 +1,43 @@
+<section class="action2 container-fluid wow fadeIn">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2">
+        <div style="background:transparent !important" class="jumbotron">
+        <h3><%= @event.title %></h3>
+        <ul>
+          <h4><li>Description: <%= @event.description %> </li></h4>
+          <h4><li>Creator: <%= link_to @event.host.name, controller: "users", action: "show", id: @event.host.id %></li></h4>
+          <h4><li>Location: <%= @event.location %></li></h4>
+          <h4><li>Date: <%= @event.date %> </li></h4>
+          <h4><li>Attendees:
+            <div id="new_attendee">
+            <% array = [] %>
+            <% @event.users.each do |user| %>
+              <%array <<  user.name %>
+            <% end %>
+              <% new_array = array.uniq %>
+              <% new_array.each do |name| %>
+                <%= name %>,
+              <% end %>
+              <% if array.length == 0 %>
+                Nobody yet!
+              <% else %>
+                and more to come!
+              <% end %>
+              </div>
+          </li></h4></ul>
+          <div class="rsvp_button">
+          <% if user_signed_in? %>
+            <% if @event.users.include?(current_user) == false %>
+              <font color="black"><%= link_to "RSVP", rsvp_path(@event), remote: true %></font>
+            <% end %>
+          </div>
+            <% if current_user == @event.host %>
+              <% if @event.points.length == 0 %>
+                <font color="black"><%= button_to "Delete Event", :event_id => @event.id, controller: 'events', action: "destroy" %></font>
+              <% end %>
+            <% end %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</section>
